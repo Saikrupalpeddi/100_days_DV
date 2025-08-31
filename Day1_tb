@@ -1,0 +1,28 @@
+
+module adder_tb;
+  reg [3:0] a,b;
+  reg cin;
+  wire [3:0] sum;
+  reg carry;
+  
+  adder dut(.a(a),.b(b),.cin(cin),.sum(sum),.carry(carry));
+  
+  initial begin
+    $monitor("a=%b,b=%b,cin=%b,carry=%b,sum=%b",a,b,cin,carry,sum);
+  end
+  
+  initial begin
+    a=4'b0011;b=4'b0001;cin=0; #5;
+    a=4'b1111;b=4'b1001;cin=0; #5;
+    $finish;
+  end
+  initial begin
+     $dumpfile("waves.vcd");  
+    $dumpvars(0, adder_tb);
+  end
+endmodule
+
+
+
+
+
