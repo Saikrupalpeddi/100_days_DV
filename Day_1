@@ -1,0 +1,27 @@
+module adder(input [3:0] a,b,input cin,output reg[3:0] sum,output carry);
+  reg [3:0] g;
+  reg [3:0] summ;
+  reg [3:0] p;
+  reg [4:0] cc;
+  int i;
+  
+   
+  always@(*) begin
+
+    cc[0]=cin;
+    for(i=0;i<4;i++) begin
+      g[i] = a[i] & b[i];
+      p[i] = a[i] ^ b[i];
+      cc[i+1] = g[i] | (p[i] & cc[i]);
+      summ[i]=a[i]^b[i]^cc[i];
+    
+  end
+  end
+  assign sum=summ;
+  assign carry=cc[4];
+endmodule
+    
+    
+    
+      
+  
