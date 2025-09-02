@@ -1,0 +1,25 @@
+//clock divider test bench
+module clk_div_tb;
+  reg clk_in;
+  reg rst;
+  wire clk_out;
+  
+  clk_div dut(.clk_in(clk_in),.rst(rst),.clk_out(clk_out));
+
+  initial begin
+    clk_in=0;
+    forever #5 clk_in=~clk_in;
+  end
+  
+initial begin
+  $dumpfile("clk_div_tb.vcd"); 
+  $dumpvars(0, clk_div_tb.dut);      
+end
+  initial begin
+    rst=1; #10; 
+    rst=0; #200;
+    $finish;
+  end
+endmodule
+  
+  
